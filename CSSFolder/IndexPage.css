@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 20px;
+  
+}
+
+ul.CompoundList li { 
+	margin-top: 10px;
+}
+
+ul.CompoundFamilyList li { 
+	margin-top: 15px;
+}

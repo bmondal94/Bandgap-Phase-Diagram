@@ -1,0 +1,10 @@
+<h1> Computational Details </h1>
+<ul> 
+	<li> Periiodic density functional theory using VASP-5.4.4</li>
+	<li> Geometry optimization: PBE-D3 (BJ), PAW basis set (ENCUT = 450 eV)</li>
+	<ul><li>Convergence: 10<sup>-6</sup> eV in energy,10<sup>-2</sup> eV/A in force </li></ul>
+	<li> Electronic properties: m-BJ, PAW basis set (ENCUT = 350 eV), spin-orbit coupling</li>
+	<ul><li>Convergence: 10<sup>-4</sup> eV in energy,10<sup>-2</sup> eV/A in force </li></ul>
+	<li> Super cell: 6x6x6, 10 SQS <a href="https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/manual/node74.html"> [1]</a>, Γ-only, band unfolding <a href="https://github.com/rubel75/fold2Bloch-VASP">[2]</a>,<a href="https://github.com/band-unfolding/bandup"> [3] </a> </li>
+	
+</ul>
