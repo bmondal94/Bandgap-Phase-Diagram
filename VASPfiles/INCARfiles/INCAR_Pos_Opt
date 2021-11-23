@@ -1,0 +1,44 @@
+# Precision-Parameter
+SYSTEM = GaSbP
+PREC = accurate
+ENCUT = 550
+EDIFF = 1E-08
+EDIFFG = -1E-02
+LREAL = Auto
+ISYM = 0        # Symmetrie 
+#ISPIN = 1       # 1 restr. 2 unrestr.
+
+# vdW correction
+IVDW = 12
+
+# SCF Optimization
+ALGO = Fast
+NELM = 100
+NELMIN = 5
+NELMDL = -5
+ISMEAR = 0
+SIGMA = 0.01
+
+# Parallelization
+LPLANE = .TRUE.
+NCORE = 24
+NSIM = 8
+
+# Geometry Optimization
+IBRION = 2
+POTIM = 0.2
+NSW = 1000
+ISIF = 2 
+NFREE = 10 
+ADDGRID = T
+
+# Mixing-Parameter
+AMIX   = 0.4
+BMIX   = 0.1
+MAXMIX = 30
+
+# Output-Parameter
+NWRITE = 0
+LWAVE = F
+LCHARG = F
+LVTOT = F

@@ -1,0 +1,195 @@
+<!The tree was desined using the concept from Peiwen Lu (https://codepen.io/P233/pen/Kzbsi)>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="../CSSFolder/WorkFlowPage.css">
+</head>
+<h1> Bandgap Phase Diagram (ternary) work flow chart </h1>
+<body>
+
+<div class="container">
+	<div class="column">
+		<div id="wrapper"><span class="label">Compound</span>
+			<div class="branch lv1"> 
+				<div class="entry sole"><span class="label">Concentration (%)</span>
+					<div class="branch lv2">
+						<div class="entry sole"><span class="label">Strain (%)</span>
+							<div class="branch lv3">
+								<div class="entry sole"><span class="label">Configuration (<abbr title="Special Quasirandom Structures">SQS</abbr>)</span> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="wrapper"><span class="label">GaAsP</span>
+		    <div class="branch lv1">
+		        <div class="entry"><span class="label">...</span>
+		            <div class="branch lv2">
+		                <div class="entry sole"><span class="label">...</span>
+		                    <div class="branch lv3">
+		                        <div class="entry sole"><span class="label">...</span></div>
+		                    </div>
+		                </div> 
+		            </div>
+		        </div>
+		        <div class="entry"><span class="label">P40</span>
+		        	<div class="branch lv2">
+		                <div class="entry sole"><span class="label">...</span>
+		                    <div class="branch lv3">
+		                        <div class="entry sole"><span class="label">...</span></div>
+		                    </div>
+		                </div> 
+		            </div>
+		        </div>
+		        <div class="entry"><span class="label">P50</span>
+		            <div class="branch lv2">
+		                <div class="entry"><span class="label step2">...</span></div>
+		                <div class="entry"><span class="label step2">S+1</span></div>
+		                <div class="entry"><span class="label step3">..., S+0.5, ...</span></div>
+		                <div class="entry"><span class="label step1">S0</span>
+		                    <div class="branch lv3">
+		                        <div class="entry"><span class="label step1">conf01</span></div>
+		                        <div class="entry"><span class="label step1">...</span></div>
+		                    </div>
+		                </div>
+		                <div class="entry"><span class="label step3">..., S-0.5, ...</span></div>
+		                <div class="entry"><span class="label step2">S-1</span></div>
+		                <div class="entry"><span class="label step2">...</span></div>
+		            </div>
+		        </div>
+		        <div class="entry"><span class="label">P60</span>
+		        	<div class="branch lv2">
+		                <div class="entry sole"><span class="label">...</span>
+		                    <div class="branch lv3">
+		                        <div class="entry sole"><span class="label">...</span></div>
+		                    </div>
+		                </div> 
+		            </div>
+		        </div>
+		        <div class="entry"><span class="label">...</span>
+		        	<div class="branch lv2">
+		                <div class="entry sole"><span class="label">...</span>
+		                    <div class="branch lv3">
+		                        <div class="entry sole"><span class="label">...</span></div>
+		                    </div>
+		                </div> 
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	
+	</div>
+
+	<div class="column" style="background:white;color:black; font-family: Arial">
+		<ul class='CompoundList'> 
+			<li> S0/conf*: Equilibrium random strutures (<abbr title="Special Quasirandom Structures">SQS</abbr> <a href="https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/manual/node74.html"> [1]</a>)</li>
+			<li> Steps</li>
+			<ul class='CompoundList'>
+				<li style='color:red;'>Step-1: Full geometry optimization for P*/S0/conf*</li>
+				<li style='color:green;'>Step-2: Low resolution strain (e.g. 1%) (script: PREPARE.sh)</li>
+					<ol style='color:green;'>
+						<li>(Constrained) geometry optimization for P*/S*/conf*</li>
+						<li>Single point calculation for P*/S*/conf*: Bandgap calculation (script: submitall.sh)</li>
+						<li>Post processing (phase-1):
+							<ol>
+								<li>Band unfolding (software: fold2Bloch <a href="https://github.com/rubel75/fold2Bloch-VASP">[2]</a>, <a href="https://github.com/band-unfolding/bandup">[3]</a>) 
+								(script: submitf2b.sh)</li>
+								<li>Generate database (script: BPDmpi/serial.py)</li>
+								<li>Get <abbr title="Direct-Indirect Transition">DIT</abbr> points and plot bandgap phase diagram (BPD)<br>(script: BPDpostprocessing.py).
+									<p>Note: Near the transition point in concentration the Bloch weights (BW) are very close and vary very slowly over quite high range in strain.</p>
+								</li>
+							</ol>
+						</li>
+					</ol>
+					
+				<li style='color:magenta;'>Step-3: High resolution strain
+					<p> Increase the strain resolution (e.g. 0.5%) near <abbr title="Direct-Indirect Transition">DIT</abbr> points for better precision.<br>(script: PREPAREhighresolution.sh)</p>
+					<ol style='color:magenta;'>
+						<li>Process-1: Use the configuration having bandgap closest to the average bandgap.</li>
+						<li>Process-2: Do the DIT resolution for each concentration (vertical errorbar in <abbr title="Bandgap Phase Diagram">BPD</abbr>).</li>
+						<li>Post processing (phase-2): Same as 'Post processing (phase-1)' but additionaly with horizontal <abbr title="Direct-Indirect Transition">DIT</abbr> error 
+						(due to <abbr title="Direct-Indirect Transition">DIT</abbr> cutoff BW criteria).</li>
+					</ol>
+				</li>
+				<li>Step-4: Repeat steps 1-3 with higher resolution in concentration near the transition point in concentration.</li>
+			</ul>
+			<li>Important notes
+				<ul>
+					<li>Process-1 and/or single large (<abbr title="Special Quasirandom Structures">SQS</abbr>) can be used to minimize the <abbr title="Density Functional Theory">DFT</abbr> calculations.</li>
+					<li>Geometry optimization with ISIF=3 (pos-volm-shape) in <a href="https://www.vasp.at/">VASP</a> is less recommended (particularly for constrained optimization). 
+					Rather use pos(ISIF=2)+volm(ISIF=7)+.... You can put both the optimizations in loop (script: submit.sh). </li>
+					<li>If too many structures generates large WAVECAR then memory management can be an issue. So, it is recommended to unfold the WAVECAR and delete the WAVECAR file from time to time.
+					<br>(script: PartialClean.sh)
+					</li>
+				</ul>
+			</li>
+			<li> All the scripts are available here: <a href="https://github.com/bmondal94/Bandgap-Phase-Diagram"> Scripts</a>
+		</ul>
+	</div>
+</div>
+
+<p>
+<div id='Arrowcontainer'> 
+<div  class="blockHead"><span class="blocktext"><abbr title="Special Quasirandom Structures">SQS</abbr></span></div>&emsp;
+<div  class="blockHead"><span class="blocktext">ab-initio calculations (e.g. DFT)</span></div>&emsp;
+<div class="blockHead"><span class="blocktext">Optimization, WAVECAR</span></div>&emsp;
+<div class="blockHead"><span class="blocktext">Band unfolding</span></div>&emsp;
+<div class="blockHead"><span class="blocktext">Unfolded band: Database</span></div>&emsp;
+<div class="blockHead"><span class="blocktext">Bandgap Phase Diagram</span></div>
+</div>
+</p>
+
+<p>
+<h3>&#8226 BPDmpi.py script working principle:</h3>
+<p>Reads the unfolded WAVECAR file (e.g. WAVECAR_spinor1.f2b) and creates the database (.json format) for all P*/S*/conf* unfolded valence band (VB) and conduction band (CB).
+	<ul>
+		<li>Calculates &Gamma;, L, X and one other symmetrically equivalent unfolded k-points set having the highest BW from the unfolded VB and CB.</li>
+		<li>One can use either the symmetry avareged BW or Maximum amount of BW. Note that, during biaxial strain you are inherently destroying the symmetry.<br>
+		So, for biaxial strain taking the symmetry averaged BW might not be a good idea.</li>
+		<li>If all the BWs are less than a cutoff BW then redefine VB and CB.</li>
+			<ul>
+				<li>Checks for higher CBs sequentially until the cutoff condition is satisfied.</li>
+				<li>Checks for lower VBs sequentially until the cutoff condition is satisfied.</li>
+				<li>If none of CBs (VBs) satisfy the cutoff criteria then the redefinition is neglected.</li>
+				
+			</ul>
+		<li>Collects the bandgap, nature of bandgap (direct or indirect), BWs [CBBW@VBMpos, VBBW@VBMpos, CBBW@CBMpos, VBBW@CBMpos].
+			<ul>
+				<li>D: Direct bandgap at the Gamma point.</li>
+				<li>I: Indirect bandgap with VBM at the Gamma point.</li>
+				<li>i: Indirect bandgap with VBM at k-point other than Gamma point.</li>
+				<li>ID: Indirect bandgap with enough BW(given by cutoff) for the direct transition.</li>
+			</ul>
+		</li>
+	</ul>
+</p>
+File extensions: .json for Database, .txt for output file.
+</p>
+
+<p>
+<h3>&#8226 BPDpostprocessing.py script working principle:</h3>
+<p>
+	<ul>
+		<li>Reads the database (e.g. .json).</li>
+		<li>Calculate bandgap (redefined), standard error in bandgap (redefined), DIT (with error).</li>
+		<li>Plot bandgap vs strain.</li>
+		<li>Plot bandgap phase diagram (with or without error)</li>
+			<ul>
+				<li>Bandgap heatmap</li>
+				<li>DIT points</li>
+				<li>DIT fits</li>
+			</ul>
+		<li>Generates the html file for web interactive plot.</li>
+	</ul>
+</p>
+</p>
+
+<footer class="page-footer">
+  <span class="myauthor">&#8226 This page is made by </span>
+  <a href="https://github.com/bmondal94/Bandgap-Phase-Diagram" target="_blank"> Badal Mondal</a>.
+</footer>
+
+</body>
+</html>

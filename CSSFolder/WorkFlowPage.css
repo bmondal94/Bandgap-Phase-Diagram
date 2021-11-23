@@ -1,0 +1,185 @@
+body {
+  min-width: 1200px;
+  margin: 0;
+  padding: 50px;
+  color: #eee9dc;
+  font: 16px Verdana, sans-serif;
+  background: #2e6ba7;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  color: white;
+  font-family: verdana;
+  font-size: 300%;
+  text-align: center;
+}
+
+.container {
+	  display: table;
+	  width: 100%;
+}
+	
+.column {
+	  display: table-cell;
+	  width: 600px;
+	  vertical-align: top;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#wrapper {
+  position: relative;
+}
+.branch {
+  position: relative;
+  margin-left: 250px;
+}
+.branch:before {
+  content: "";
+  width: 50px;
+  border-top: 2px solid #eee9dc;
+  position: absolute;
+  left: -100px;
+  top: 50%;
+  margin-top: 1px;
+}
+.entry {
+  position: relative;
+  min-height: 60px;
+}
+.entry:before {
+  content: "";
+  height: 100%;
+  border-left: 2px solid #eee9dc;
+  position: absolute;
+  left: -50px;
+}
+.entry:after {
+  content: "";
+  width: 50px;
+  border-top: 2px solid #eee9dc;
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  margin-top: 1px;
+}
+.entry:first-child:before {
+  width: 10px;
+  height: 50%;
+  top: 50%;
+  margin-top: 2px;
+  border-radius: 10px 0 0 0;
+}
+.entry:first-child:after {
+  height: 10px;
+  border-radius: 10px 0 0 0;
+}
+.entry:last-child:before {
+  width: 10px;
+  height: 50%;
+  border-radius: 0 0 0 10px;
+}
+.entry:last-child:after {
+  height: 10px;
+  border-top: none;
+  border-bottom: 2px solid #eee9dc;
+  border-radius: 0 0 0 10px;
+  margin-top: -9px;
+}
+.entry.sole:before {
+  display: none;
+}
+.entry.sole:after {
+  width: 50px;
+  height: 0;
+  margin-top: 1px;
+  border-radius: 0;
+}
+.label {
+  display: block;
+  min-width: 150px;
+  padding: 5px 10px;
+  line-height: 20px;
+  text-align: center;
+  border: 2px solid #eee9dc;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.label.step1 {
+  background: white;
+  color: red;
+}
+
+.label.step2 {
+  background: white;
+  color: green;
+}
+
+.label.step3 {
+  background: white;
+  color: magenta;
+}
+
+.page-footer a {
+	color: white;
+	font: 26px sans-serif;
+}
+.myauthor {
+	line-height: 120px;
+}
+
+ul.CompoundList li { 
+	margin-top: 5px;
+}
+
+ul.CompoundFamilyList li { 
+	margin-top: 15px;
+}
+
+#Arrowcontainer {
+    width: 100%;
+    height: 80px;
+    overflow: auto;
+    text-align: center;
+    padding: 20px; 
+}
+.blockHead:after {
+  color: orange;
+  border-left: 20px solid;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  display: inline-block;
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 0;  
+}
+.blockHead {
+  background-color: orange;
+  /*width: 150px; */
+  width: 250px; 
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  position: relative;
+  
+}
+
+.blocktext {
+  color: white;
+  font-weight: bold;
+  font-family: Arial;
+  font-size: 11;
+}
