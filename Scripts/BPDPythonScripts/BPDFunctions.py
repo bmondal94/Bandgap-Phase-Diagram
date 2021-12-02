@@ -15,8 +15,6 @@ import re
 import argparse
 from datetime import datetime
 import HeaderTxt
-from scipy.ndimage.filters import gaussian_filter
-from scipy.interpolate import griddata #, make_lsq_spline, BSpline, make_interp_spline 
 
 #%%----------------------------------------------------------------------------
 def BPD_header(mytxt):
@@ -993,95 +991,4 @@ def GetStrainBandgapStd(BPD):
     NC = list(BPD.keys())   
     return NC, STRAIN, BANDGAP1, BANDGAP2, STDERROR1, STDERROR2
 
-def CreateHeatmapData(NC, STRAIN, BANDGAP, heatmap_bound=False, heatmap_strain_bound=None, \
-                 Conc_bound=(0,100), G_filtering=True, Sigma=2):
-    """
-    This function calculates the necessary data for final heatmap in BPD.
 
-    Parameters
-    ----------
-    NC : String or float array or list
-        The concentration array.
-    STRAIN : Float array
-        Strain array.
-    BANDGAP : Float array
-        Bandgap arryay
-    heatmap_bound : Bool, optional
-       Whether the heatmap will be bound in strain or concentration? default is False.
-    heatmap_strain_bound : Float, optional
-        Defines the cutoff strain for heatmap. The default is None.
-    Conc_bound : Float tuple (lower limit, upper limit), optional
-        Defines the limits in concentration for bandgap. The default is (0,100).
-    G_filtering : Bool, optional
-        Gaussian filtering in the data. The default is True.
-    Sigma : Scalar, optional
-        Defines the sigma value in gaussian filtering. The default is 2.
-        
-    Returns
-    -------
-    filtered_arr : Float array
-        Final heat map array.
-    list [x_left, x_right, y_bottom, y_top]
-        Extent of x and y axis.
-
-    """
-    Xarray=[]
-    for ii in range(0,len(NC)):
-        xxaxis = [NC[ii]]*len(STRAIN[ii])
-        Xarray+= xxaxis
-    
-    Xarray = np.array(Xarray, dtype=float)
-    strainarray = np.concatenate(STRAIN, axis=0)
-    Bandgaparray = np.concatenate(BANDGAP, axis=0) 
-    
-    if heatmap_bound:
-        if heatmap_strain_bound:
-            strainarray_cutoff_ind = np.argwhere(abs(strainarray)>heatmap_strain_bound)
-    
-        if Conc_bound:
-            NC_index = np.argwhere(((Xarray>=Conc_bound[0]) & (Xarray<=Conc_bound[1])))  
-            
-        strainarray_cutoff_ind = np.concatenate((strainarray_cutoff_ind,NC_index))
-        
-        strainarray = np.delete(strainarray, strainarray_cutoff_ind)
-        Bandgaparray = np.delete(Bandgaparray, strainarray_cutoff_ind)
-        Xarray = np.delete(Xarray, strainarray_cutoff_ind)
-
-    extenty_b = np.amin(strainarray)
-    extenty_t = np.amax(strainarray) 
-    grid_x, grid_y = np.mgrid[0:100:100j, extenty_b:extenty_t:40j]
-
-    points = np.stack((Xarray, strainarray),axis=-1)
-    grid_z0 = griddata(points,Bandgaparray, (grid_x, grid_y), method='nearest')
-    filtered_arr=gaussian_filter(grid_z0.T, sigma=Sigma) if G_filtering else grid_z0.T
-    return filtered_arr, [0,100,extenty_b,extenty_t]
-
-def DITpolyfit(XX, YY, order=3, xmin=None, xmax=None):
-    """
-    This function use polynomial fitting on the DIT.
-
-    Parameters
-    ----------
-    XX : Float array
-        X-numpy array.
-    YY : Float array
-        Y-numpy array.
-    order : Integer, optional
-        Polynomial order. The default is 3.
-    xmin : Float, optional
-        Minimum in X-data. The default is None.
-    xmax : Float, optional
-        Maximum in X-data. The default is None.
-
-    Returns
-    -------
-    Float numpy array, Float numpy array
-        The X and Y array after polynomial fitting.
-
-    """
-    z = np.polyfit(XX, YY, order)
-    p = np.poly1d(z)
-    if xmin is None: xmin=XX[0]
-    if xmax is None: xmax=XX[-1]
-    xx = np.linspace(xmin,xmax,100)
-    return xx, p(xx)
