@@ -88,16 +88,16 @@
 			<li> Steps</li>
 			<ul class='CompoundList'>
 				<li style='color:red;'>Step-1: Full geometry optimization for P*/S0/conf*</li>
-				<li style='color:green;'>Step-2: Low resolution strain (e.g. 1%) (script: <a href="../Scripts/BashScripts/">PREPARE.sh<a>)</li>
+				<li style='color:green;'>Step-2: Low resolution strain (e.g. 1%) (script: <a href="../Scripts/BashScripts/PREPARE.sh">PREPARE.sh<a>)</li>
 					<ol style='color:green;'>
 						<li>(Constrained) geometry optimization for P*/S*/conf*</li>
-						<li>Single point calculation for P*/S*/conf*: Bandgap calculation (script: <a href="../Scripts/BashScripts/">submitall.sh<a>)</li>
+						<li>Single point calculation for P*/S*/conf*: Bandgap calculation (script: <a href="../Scripts/BashScripts/submitall.sh">submitall.sh<a>)</li>
 						<li>Post processing (phase-1):
 							<ol>
 								<li>Band unfolding (software: fold2Bloch <a href="https://github.com/rubel75/fold2Bloch-VASP">[2]</a>, <a href="https://github.com/band-unfolding/bandup">[3]</a>) 
-								(script: <a href="../Scripts/BashScripts/">submitf2b.sh<a>)</li>
-								<li>Generate database (script: <a href="../Scripts/BPDPythonScripts">BPDmpi/serial.py<a>)</li>
-								<li>Get <abbr title="Direct-Indirect Transition">DIT</abbr> points and plot bandgap phase diagram (BPD)<br>(script: <a href="../Scripts/BPDPythonScripts">BPDpostprocessing.py<a>).
+								(script: <a href="../Scripts/BashScripts/submitf2b.sh">submitf2b.sh<a>)</li>
+								<li>Generate database (script: <a href="../Scripts/BPDPythonScripts/BPDmpi.py">BPDmpi/serial.py<a>)</li>
+								<li>Get <abbr title="Direct-Indirect Transition">DIT</abbr> points and plot bandgap phase diagram (BPD)<br>(script: <a href="../Scripts/BPDPythonScripts/BPDpostprocessing.py">BPDpostprocessing.py<a>).
 									<p>Note: Near the transition point in concentration the Bloch weights (BW) are very close and vary very slowly over quite high range in strain.</p>
 								</li>
 							</ol>
@@ -105,7 +105,7 @@
 					</ol>
 					
 				<li style='color:magenta;'>Step-3: High resolution strain
-					<p> Increase the strain resolution (e.g. 0.5%) near <abbr title="Direct-Indirect Transition">DIT</abbr> points for better precision.<br>(script: <a href="../Scripts/BashScripts/">PREPAREhighresolution.sh<a>)</p>
+					<p> Increase the strain resolution (e.g. 0.5%) near <abbr title="Direct-Indirect Transition">DIT</abbr> points for better precision.<br>(script: <a href="../Scripts/BashScripts/PREPAREhighresolution.sh">PREPAREhighresolution.sh<a>)</p>
 					<ol style='color:magenta;'>
 						<li>Process-1: Use the configuration having bandgap closest to the average bandgap.</li>
 						<li>Process-2: Do the DIT resolution for each concentration (vertical errorbar in <abbr title="Bandgap Phase Diagram">BPD</abbr>).</li>
@@ -119,13 +119,13 @@
 				<ul>
 					<li>Process-1 and/or single large (<abbr title="Special Quasirandom Structures">SQS</abbr>) can be used to minimize the <abbr title="Density Functional Theory">DFT</abbr> calculations.</li>
 					<li>Geometry optimization with ISIF=3 (pos-volm-shape) in <a href="https://www.vasp.at/">VASP</a> is less recommended (particularly for constrained optimization). 
-					Rather use pos(ISIF=2)+volm(ISIF=7)+.... You can put both the optimizations in loop (script: <a href="../Scripts/BashScripts/">submit.sh<a>). </li>
+					Rather use pos(ISIF=2)+volm(ISIF=7)+.... You can put both the optimizations in loop (script: <a href="../Scripts/BashScripts/submit.sh">submit.sh<a>). </li>
 					<li>If too many structures generates large WAVECAR then memory management can be an issue. So, it is recommended to unfold the WAVECAR and delete the WAVECAR file from time to time.
-					<br>(script: <a href="../Scripts/BashScripts/">PartialClean.sh<a>)
+					<br>(script: <a href="../Scripts/BashScripts/PartialClean.sh">PartialClean.sh<a>)
 					</li>
 				</ul>
 			</li>
-			<li> All the scripts are available here: <a href="../Scripts/">Scripts</a>
+			<li> All the scripts are available here: <a href="https://github.com/bmondal94/Bandgap-Phase-Diagram/tree/main/Scripts">Scripts</a>
 		</ul>
 	</div>
 </div>
