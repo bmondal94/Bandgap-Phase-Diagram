@@ -5,29 +5,104 @@
 </head>
 <body>
 
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <img src="./ImageFolder/BPD1.png" style="width:100%">
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 3</div>
+    <img src="./ImageFolder/BPD2.png" style="width:100%">
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 3</div>
+    <img src="./ImageFolder/BPD3.png" style="width:100%">
+    <!--<div class="text">Caption Three</div>-->
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <a href="./PDFs/BPD.pdf"> [Download]</a>
+  <a href="./PDFs/BPDLogoGuideBook.pdf"> [Report]</a>
+</div> 
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
 <field>
-<h1 style="text-align:center">Bandgap Phase Diagram</h1>
-<p>
-"""<br>
-<b>Me:</b> I want to grow this. Can grow this for me?<br>
-<b><abbr title="Compositional Phase Diagram">CPD</abbr>:</b> Yeahhhhhhhhhh! Hmmmmmmmmmm!<br>
-<b><abbr title="Bandgap Phase Diagram">BPD</abbr>:</b> Hey! Why do you wanna grow this?<br>
-<b>Me:</b> I need a device like .... And I thoght this probably will work if I can grow this.<br>
-<b>BPD:</b> Are you sure this will work as you want? <br>
-<b>Me:</b> Nah! (after 2 days: Nope! It doesn't work. But we are going close. Let's try next one.) <br>
-<b>BPD:</b> Wait. Don't waste your time and money. It seems to me this is not the right choice. Use here .... This will be the best option.<br>
-.<br>
-.<br>
-.<br>
-<b>Me:</b> Wow. Thanks to both of you.<br>
-"""
-</p>
+<h3> Introduction </h3>
+<p>For the introduction to <b>bandgap phase diagram</b> (BPD) concept please refer to (work in progress). The main idea behind <abbr title="Bandgap Phase Diagram">BPD</abbr> is to understand the variation of the Direct-Indirect Transition (DIT) points with composition using the concept of band unfolding (<a href="https://github.com/rubel75/fold2Bloch-VASP">1</a>, <a href="https://github.com/band-unfolding/bandup">2</a>) and Bloch spectral density (<a href="https://doi.org/10.1103/PhysRevB.64.115208">3</a>, <a href="https://doi.org/10.1103/PhysRevLett.104.236403">4</a>, <a href="https://doi.org/10.1103/PhysRevB.90.115202">5</a>) which ultimately give rise to DIT line/curve that as if, separates the nature of bandgap into two phases: direct and indirect. Please contact to the below contact addresses for further details. </p>
+<ul>
+	<li><a href='./PDFs/short-abstract.pdf'>Download 1-page abstract here</a></li>
+	<li><a href='./PDFs/MyResearchSummary2022.pdf'>Download short abstract here</a></li>
+</ul>
+<details><summary>BPD jokes</summary>
+	<!-- <h1 style="text-align:center">Bandgap Phase Diagram</h1> -->
+	<p>
+	"""<br>
+	<b>Me:</b> I want to grow this. Can you please grow this for me?<br>
+	<b><abbr title="Compositional Phase Diagram">CPD</abbr>:</b> Yeahhhhhhhhhh! Hmmmmmmmmmm!<br>
+	<b><abbr title="Bandgap Phase Diagram">BPD</abbr>:</b> Hey! Why do you wanna grow this?<br>
+	<b>Me:</b> I need a device like .... And I thoght this probably will work if I can grow this.<br>
+	<b>BPD:</b> Are you sure this will work as you want? <br>
+	<b>Me:</b> Nah! (after 2 days: Nope! It doesn't work. But we are going close. Let's try next one.) <br>
+	<b>BPD:</b> Wait. Don't waste your time and money. It seems to me this is not the right choice. Use here .... This will be the best option.<br>
+	.<br>
+	.<br>
+	.<br>
+	<b>Me:</b> Wow. Thanks to both of you.<br>
+	"""
+	</p>
+</details>
 </field>
 
-<p>For the introduction to <b>bandgap phase diagram</b> (BPD) concept please refer to (work in progress). The main idea behind <abbr title="Bandgap Phase Diagram">BPD</abbr> is to understand the variation of the Direct-Indirect Transition (DIT) points with composition using the concept of band unfolding and Bloch spectral density, which ultimately give rise to DIT line/curve that as if, separates the nature of bandgap into two phases: direct and indirect. Please contact to the below contact addresses for further details. </p>
 
 <p> 
 <h3>Systems</h3> 
+	<details><summary>III-V binary</summary>
+		<ul><li>The project is finished. The report preparation is work in progress. Please contact to below address for further details.</li><ul>
+	</details>
+	<br>
 	<details><summary>III-V ternary</summary>
 		<details style='padding:10px 0px 0px 20px;'><summary>DFT based</summary>
 			<ul class='CompoundList'>
@@ -43,6 +118,13 @@
 		</details>
 		<details style='padding:10px 0px 0px 20px;'><summary>ML model based</summary>
 		Work in progress.
+		</details>
+	</details>
+	<br>
+	<details><summary>III-V quaternary <div class="blink">(comming soon)</div></summary>
+		<details style='padding:10px 0px 0px 20px;'><summary>DFT + ML based</summary>
+			<ul><li>The project is work in progress. Please contact to the below address for further details.</li></ul>
+
 		</details>
 	</details>
 	<br>
@@ -76,12 +158,12 @@ We are also <b style='color:green;'>looking for active collaborations from both 
 
 <p> 
 <h3>Contribution</h3> 
-<p>If you want to contribute to this project please refer to my GitHub page <img src="GitHub.png" style="width:20px;height:20px;">. <a href="https://github.com/bmondal94/Bandgap-Phase-Diagram"> Link </a></p>
+<p>If you want to contribute to this project please refer to my GitHub page <img src="./ImageFolder/GitHub.png" style="width:20px;height:20px;">. <a href="https://github.com/bmondal94/Bandgap-Phase-Diagram"> Link </a></p>
 </p>
 
 <p> 
 <h3>References</h3> 
-<p> Still work in progress. Please contact to above contact details until then.
+<p> Still work in progress. Please contact to the below contact details until then.
 </p>
 
 <p> 
@@ -104,4 +186,5 @@ Visit us at: <a href="https://woi.chemie.uni-leipzig.de/start/ak-prof-tonner-zec
 <p> <a href=https://bmondal94.github.io/Bandgap-Phase-Diagram/> This page</a> is created (22.09.2021) and maintained by <a href="https://github.com/bmondal94/Bandgap-Phase-Diagram"> Badal Mondal</a>. If the results in this page are useful to you we will consider our efforts successful. We will highly appreciate if you cite the above references and this page, if you use the results from this page. 
 </p>
 
-<body>
+</body>
+</html>
