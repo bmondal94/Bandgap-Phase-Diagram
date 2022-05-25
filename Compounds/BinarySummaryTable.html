@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  text-align:center;
+}
+.top{border-bottom:solid black 1px; display:inline-block; float:left}
+.bottom{ display:inline-block; clear:left; float:left}
+</style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+
+
+<body>
+<h1 align="center" >III-V binaries</h1>
+<h2>Lattice parameters and bandgap </h2>
+<table ID="lp-eg" style="width:80%;">
+	<tr>
+		<th colspan='2'>System</th>
+		<th>Si</th>
+		<th>GaP</th>
+		<th>GaAs</th>
+		<th>GaSb</th>
+		<th>InP</th>
+		<th>InAs</th>
+		<th>InSb</th>
+	</tr>
+	<tr>
+		<td rowspan='3'>Lattice parameters(&#8491;)</td>
+		<td>Calculation</td>
+		<td>5.421</td>
+		<td>5.474</td>
+		<td>5.689</td>
+		<td>6.134</td>
+		<td>5.939</td>
+		<td>6.138</td>
+		<td>6.556</td>
+	</tr>
+	<tr>
+		<td><a href='http://matprop.ru/'>Experiment</a> at 300K</td>
+		<td>5.431</td>
+		<td>5.451</td>
+		<td>5.653</td>
+		<td>6.096</td>
+		<td>5.869</td>
+		<td>6.058</td>
+		<td>6.479</td>
+	</tr>
+	<tr>
+		<td>Deviation</td>
+		<td>-0.010</td>
+		<td>0.023</td>
+		<td>0.036</td>
+		<td>0.038</td>
+		<td>0.090</td>
+		<td>0.080</td>
+		<td>0.077</td>
+	</tr>
+	<tr>
+		<td rowspan='3'>Bandgap (eV)</a></td>
+		<td>Calculation</td>
+		<td>1.19</td>
+		<td>2.36</td>
+		<td>1.47</td>
+		<td>0.64</td>
+		<td>1.43</td>
+		<td>0.36</td>
+		<td>0.03</td>
+	</tr>
+	<tr>
+		<td><a href='http://matprop.ru/'>Experiment</a> at 300K</td>
+		<td>1.12</td>
+		<td>2.26</td>
+		<td>1.42</td>
+		<td>0.73</td>
+		<td>1.34</td>
+		<td>0.35</td>
+		<td>0.17</td>
+	</tr>
+	<tr>
+		<td>Deviation</td>
+		<td>0.07</td>
+		<td>0.10</td>
+		<td>0.05</td>
+		<td>-0.09</td>
+		<td>0.09</td>
+		<td>0.01</td>
+		<td>0.14</td>
+	</tr>
+</table>
+
+
+<h2>Transitions in bandgap nature in different III-V binary semiconductors</h2>
+<p>As valence band maxima in all cases remains at the Γ-point, the location of conduction band minima (CBM) solely determines the nature of bandgap and hence, the different transitions.
+</p>
+<table ID="eg-nature" style="width:80%;">
+  <tr>
+    <th rowspan="2">System</th>
+    <th colspan='3'>Transition**</th>
+    <th colspan='2'>CBM transition path</th>
+    <th rowspan="2">References</th>
+  </tr>
+  <tr>
+    <th>Type*</th>
+    <th>Isotropic strain (%)</th>
+    <th>Biaxial strain (%)</th>
+    <th>Isotropic strain</th>
+    <th>Biaxial strain</th>
+  </tr>
+  <tr>
+    <td>Si</td>
+    <td>IDT</td>
+    <td>10.31 (t)</td>
+    <td>&times;</td>
+    <td>&Delta;<sub>m</sub>&srarr; L &srarr; &Gamma; (t)</td>
+    <td>&Delta;<sub>m</sub> &srarr; K &srarr; L (c)</td>
+    <td><a href='https://doi.org/10.1016/0038-1098(75)90245-8'>1</a></td>
+  </tr>
+  <tr>
+    <td>GaP</td>
+    <td>IDT</td>
+    <td>2.63 (t)</td>
+    <td>&times;</td>
+    <td>&Delta;<sub>m</sub> &srarr; L &srarr; &Gamma; (t)</td>
+    <td>&Delta;<sub>m</sub> &srarr; L (c)</td>
+    <td><a href='https://link.aps.org/doi/10.1103/PhysRev.134.A1628'>2</a>,<a href='https://link.aps.org/doi/10.1103/PhysRevB.75.235207'>3</a>,<a href=' https://doi.org/10.1063/1.2907499'>4</a></td>
+  </tr>
+  <tr>
+    <td>GaAs</td>
+    <td>DIT</td>
+    <td>1.56 (c)</td>
+    <td>3.52 (t)</td>
+    <td>&Gamma; &srarr; L &srarr; &Delta;<sub>m</sub> &srarr; X (c)</td>
+    <td>&Gamma; &srarr; &Delta;<sub>m</sub> (t)</td>
+    <td><a href='https://doi.org/10.1063/1.3247886'>5</a>,<a href='https://link.aps.org/doi/10.1103/PhysRev.122.1149'>6</a>,<a href='https://www.elsevier.com/books/high-pressure-in-semiconductor-physics-ii/paul/978-0-12-752163-3'>7</a>,<a href='https://doi.org/10.1016/0038-1098(78)90214-4'>8</a>,<a href='https://link.aps.org/doi/10.1103/PhysRevB.22.894'>9</a>,<a href='https://link.aps.org/doi/10.1103/PhysRevB.12.5729'>10</a>,<a href='https://link.aps.org/doi/10.1103/PhysRevB.36.1581'>11</a>,<a href='https://link.aps.org/doi/10.1103/PhysRevB.14.2681'>12</a></td>
+  </tr>
+  <tr>
+    <td>GaSb</td>
+    <td>DIT</td>
+    <td>1.00 (c)</td>
+    <td>3.71 (t)</td>
+    <td>&Gamma; &srarr; L &srarr; &Delta;<sub>m</sub> (c)</td>
+    <td>&Gamma; &srarr; &Delta;<sub>m</sub> (t)</td>
+    <td><a href='https://link.aps.org/doi/10.1103/PhysRev.122.1149'>13</a></td>
+  </tr>
+  <tr>
+    <td>InP</td>
+    <td>DIT</td>
+    <td>4.40 (c)</td>
+    <td>7.66 (t)</td>
+    <td>&Gamma; &srarr; X (c)</td>
+    <td>&Gamma; &srarr; &Delta;<sub>m</sub> (t)</td>
+    <td><a href='https://link.aps.org/doi/10.1103/PhysRev.122.1149'>13</a></td>
+  </tr>
+  <tr>
+    <td>InAs</td>
+    <td>DIT</td>
+    <td>7.41 (c)</td>
+    <td>&times;</td>
+    <td>&Gamma; &srarr; X (c)</td>
+    <td>&times;</td>
+    <td><a href='https://link.aps.org/doi/10.1103/PhysRev.122.1149'>13</a></td>
+  </tr>  
+  <tr>
+    <td>InSb</td>
+    <td>DIT</td>
+    <td>5.18 (c)</td>
+    <td>&times;</td>
+    <td>&Gamma; &srarr; L &srarr; &Delta;<sub>m</sub> (c)</td>
+    <td>&times;</td>
+    <td><a href='https://link.aps.org/doi/10.1103/PhysRev.103.861'>14</a></td>
+  </tr>  
+</table>
+<p>
+* The DIT and IDT correspond to the direct to indirect and indirect to direct transition respectively. 
+<br>
+** The 't' and 'c' in brackets correspond to tensile and compressive strain, respectively. 
+<br>
+× No transitions within ±10% of strain.
+<br>
+&Delta;<sub>m</sub> = [0.0000, 0.4231, 0.4231] in reciprocal space.
+<br>
+CBM : conduction band minima. 
+</p>
+
+<h2>Direct to Indirect Transitions (DIT) in different III-V binary semiconductors under hydrostatic pressure</h2>
+
+<table ID="eg-nature" style="width:80%;">
+  <tr>
+    <th rowspan="3">System</th>
+    <th colspan='4'>Transition</th>
+    <th colspan='2' rowspan='2'>CBM transition path</th>
+  </tr>
+   <tr>
+    <th colspan='2'>Strain(%)</th>
+    <th colspan="2">Pressure (GPa)</th>
+  </tr>
+  <tr>
+    <th>Theory</th>
+    <th>Experiment</th>
+    <th>Theory</th>
+    <th>Experiment</th>
+    <th>Theory</th>
+    <th>Experiment</th>
+  </tr>
+  <tr>
+    <td>GaAs</td>
+    <td>1.56</td>
+    <td>2.10</td>
+    <td>3.94</td>
+    <td>5.53</td>
+    <td>G&rarr;L</td>
+    <td>G&rarr;X</td>
+  </tr>
+  <tr>
+    <td>GaSb</td>
+    <td>1.00</td>
+    <td>0.70</td>
+    <td>1.85</td>
+    <td>1.26</td>
+    <td>G&rarr;L</td>
+    <td>G&rarr;L</td>
+  </tr>
+  <tr>
+    <td>InP</td>
+    <td>4.40</td>
+    <td>3.51</td>
+    <td>13.36</td>
+    <td>9.92</td>
+    <td>G&rarr;X</td>
+    <td>G&rarr;X</td>
+  </tr>
+  <tr>
+    <td>InAs</td>
+    <td>7.41</td>
+    <td>6.84</td>
+    <td>24.22</td>
+    <td>21.33</td>
+    <td>G&rarr;X</td>
+    <td>G&rarr;X</td>
+  </tr>
+  <tr>
+    <td>InSb</td>
+    <td>5.18</td>
+    <td>3.09</td>
+    <td>11.20</td>
+    <td>5.62</td>
+    <td>G&rarr;L</td>
+    <td>G&rarr;X</td>
+  </tr>
+</table>
+<p>
+<ul>
+<li>For the strain-pressure conversion the third order Birch-Murnaghan eqation of state is used.
+\[ P(V) = {3\over 2}B_0 \left[\left({V_0 \over V}\right)^{7\over 3} - \left({V_0 \over V}\right)^{5\over 3}\right] \times \left\{1+{3\over4}(B_0'-4)\left[\left({V_0 \over V}\right)^{2\over 3} -1\right] \right\} \]</li>
+<li>The bulk modulus data that are used in the above conversions <a href='https://doi.org/10.1080/09500830701203131'>[ref.]</a>: \(B_0\)(GPa)={Si: 98, GaP: 88.7, GaAs: 74.8, GaSb: 57, InP: 71, InAs: 60, InSb: 47.4}</li>
+<li>The 1st derivative of bulk modulus data that are used in the above conversions <a href='https://doi.org/10.1080/09500830701203131'>[ref.]</a>: \( B_0'\)={Si: 4.16, GaP: 4.77, GaAs: 4.67, GaSb: 4.80, InP: 4.90, InAs: 4.80, InSb: 4.90}</li>
+</ul>
+</p>
+
+<h2>Biaxial strain summary data in different III-V binary semiconductors</h2>
+<table ID="biaxial-summary" style="width:100%;">
+  <tr>
+    <th rowspan='2'>System/Substrate</th>
+    <th colspan='3'>Si</th>
+    <th colspan='3'>GaP</th>
+    <th colspan='3'>GaAs</th>
+    <th colspan='3'>GaSb</th>
+    <th colspan='3'>InP</th>
+    <th colspan='3'>InAs</th>
+    <th colspan='3'>InSb</th>
+  </tr>
+  <tr>
+    <td>Strain (%)</td>
+    <td>E<sub>g</sub> (eV)</td>
+    <td>Nature</td>
+    <td>Strain (%)</td>
+    <td>E<sub>g</sub> (eV)</td>
+    <td>Nature</td>
+    <td>Strain (%)</td>
+    <td>E<sub>g</sub> (eV)</td>
+    <td>Nature</td>
+    <td>Strain (%)</td>
+    <td>E<sub>g</sub> (eV)</td>
+    <td>Nature</td>
+    <td>Strain (%)</td>
+    <td>E<sub>g</sub> (eV)</td>
+    <td>Nature</td>
+    <td>Strain (%)</td>
+    <td>E<sub>g</sub> (eV)</td>
+    <td>Nature</td>
+    <td>Strain (%)</td>
+    <td>E<sub>g</sub> (eV)</td>
+    <td>Nature</td>
+  </tr>
+  <tr>
+    <th>Si</th>
+    <td>0.00</td>
+    <td>1.19</td>
+    <td>I</td>
+    <td>0.98 (t)</td>
+    <td>1.24</td>
+    <td>I</td>
+    <td>4.94 (t)</td>
+    <td>1.41</td>
+    <td>I</td>
+    <td>13.15 (t)</td>
+    <td>0.46</td>
+    <td>D</td>
+    <td>9.55 (t)</td>
+    <td>1.30</td>
+    <td>I</td>
+    <td>13.23 (t)</td>
+    <td>0.43</td>
+    <td>D</td>
+    <td>20.94 (t)</td>
+    <td>--</td>
+    <td>--</td>
+  </tr>
+  <tr>
+    <th>GaP</th>
+    <td>0.97 (c)</td>
+    <td>2.31</td>
+    <td>I</td>
+    <td>0.00</td>
+    <td>2.36</td>
+    <td>I</td>
+    <td>3.93 (t)</td>
+    <td>1.98</td>
+    <td>D</td>
+    <td>12.06 (t)</td>
+    <td>0.17</td>
+    <td>D</td>
+    <td>8.50 (t)</td>
+    <td>0.92</td>
+    <td>D</td>
+    <td>12.13 (t)</td>
+    <td>0.16</td>
+    <td>D</td>
+    <td>19.77 (t)</td>
+    <td>--</td>
+    <td>--</td>
+  </tr>
+  <tr>
+    <th>GaAs</th>
+    <td>4.71 (c)</td>
+    <td>1.78</td>
+    <td>I</td>
+    <td>3.78 (c)</td>
+    <td>1.84</td>
+    <td>I</td>
+    <td>0.00</td>
+    <td>1.47</td>
+    <td>D</td>
+    <td>7.82 (t)</td>
+    <td>0.00</td>
+    <td>--</td>
+    <td>4.39 (t)</td>
+    <td>0.45</td>
+    <td>D</td>
+    <td>7.89 (t)</td>
+    <td>0.00</td>
+    <td>--</td>
+    <td>15.24 (t)</td>
+    <td>0.00</td>
+    <td>--</td>
+  </tr>
+  <tr>
+    <th>GaSb</th>
+    <td>11.62 (c)</td>
+    <td>0.25</td>
+    <td>I</td>
+    <td>10.76 (c)</td>
+    <td>0.34</td>
+    <td>I</td>
+    <td>7.25 (c)</td>
+    <td>0.70</td>
+    <td>I</td>
+    <td>0.00</td>
+    <td>0.64</td>
+    <td>D</td>
+    <td>3.18 (t)</td>
+    <td>0.00</td>
+    <td>--</td>
+    <td>0.07 (t)</td>
+    <td>0.62</td>
+    <td>D</td>
+    <td>6.88 (t)</td>
+    <td>0.00</td>
+    <td>--</td>
+  </tr>
+  <tr>
+    <th>InP</th>
+    <td>8.72 (c)</td>
+    <td>1.92</td>
+    <td>I</td>
+    <td>7.83 (c)</td>
+    <td>2.00</td>
+    <td>I</td>
+    <td>4.21 (c)</td>
+    <td>2.21</td>
+    <td>D</td>
+    <td>3.28 (c)</td>
+    <td>2.03</td>
+    <td>D</td>
+    <td>0.00</td>
+    <td>1.43</td>
+    <td>D</td>
+    <td>3.35 (t)</td>
+    <td>0.82</td>
+    <td>D</td>
+    <td>10.39 (t)</td>
+    <td>0.00</td>
+    <td>--</td>
+  </tr>
+  <tr>
+    <th>InAs</th>
+    <td>11.68 (c)</td>
+    <td>1.33</td>
+    <td>I</td>
+    <td>10.82 (c)</td>
+    <td>1.41</td>
+    <td>I</td>
+    <td>7.32 (c)</td>
+    <td>1.66</td>
+    <td>D</td>
+    <td>0.07 (c)</td>
+    <td>0.37</td>
+    <td>D</td>
+    <td>3.24 (c)</td>
+    <td>0.93</td>
+    <td>D</td>
+    <td>0.00</td>
+    <td>0.36</td>
+    <td>D</td>
+    <td>6.81 (t)</td>
+    <td>0.00</td>
+    <td>--</td>
+  </tr>  
+  <tr>
+    <th>InSb</th>
+    <td>17.31 (c)</td>
+    <td>--</td>
+    <td>--</td>
+    <td>16.50 (c)</td>
+    <td>--</td>
+    <td>--</td>
+    <td>13.22 (c)</td>
+    <td>0.54</td>
+    <td>I</td>
+    <td>6.44 (c)</td>
+    <td>1.13</td>
+    <td>I</td>
+    <td>9.41 (c)</td>
+    <td>0.91</td>
+    <td>I</td>
+    <td>6.38 (c)</td>
+    <td>1.13</td>
+    <td>I</td>
+    <td>0.00</td>
+    <td>0.03</td>
+    <td>D</td>
+  </tr>  
+</table>
+<p>
+<ul>
+<li>Linear interpolation/extrapolation is used to determine the exact bandgap magnitudes in between DFT data and close to the >10% of strain where no DFT data are available.</li>
+<li>The 't' and 'c' in brackets correspond to tensile and compressive strain, respectively.</li>
+</ul>
+</p>
+
+<h2>Semiconductor to metal (SMT) and Semiconductor to semi-metal transitions (SsMT)  in different III-V binary semiconductors</h2>
+<table style="width:80%;" ID="S(s)MT">
+  <tr>
+    <th colspan="2">System</th>
+    <th>Si</th>
+    <th>GaP</th>
+    <th>GaAs</th>
+    <th>GaSb</th>
+    <th>InP</th>
+    <th>InAs</th>
+    <th>InSb</th>
+  </tr>
+  <tr>
+    <td colspan='2'>&Delta;E<sub>&Gamma;</sub> (eV)</td>
+    <td>3.14</td>
+    <td>2.99</td>
+    <td>1.81</td>
+    <td>0.64</td>
+    <td>1.43</td>
+    <td>0.36</td>
+    <td>0.03</td>
+  </tr>
+  <tr>
+    <td rowspan='2'>SMT*</td>
+    <td>Isotropic strain (%)</td>
+    <td>~15.00 (t)</td>
+    <td>~13.00 (t)</td>
+    <td>6.67 (t)</td>
+    <td>2.85 (t)</td>
+    <td>8.20 (t)</td>
+    <td>2.10 (t)</td>
+    <td>0.34 (t)</td>
+  </tr>
+  <tr>
+    <td>Biaxial strain (%)</td>
+    <td>&times;</td>
+    <td>&times;</td>
+    <td>7.86 (c)</td>
+    <td>5.00 (c)</td>
+    <td>9.90 (c)</td>
+    <td>4.74 (t), 4.36 (c)</td>
+    <td>0.34 (t), 0.34(c)</td>
+  </tr>
+  <tr>
+    <td rowspan='2'>SsMT*</td>
+    <td>Isotropic strain (%)</td>
+    <td>&times;</td>
+    <td>&times;</td>
+    <td>&times;</td>
+    <td>&times;</td>
+    <td>&times;</td>
+    <td>&times;</td>
+    <td>&times;</td>
+  </tr>
+  <tr>
+    <td>Biaxial strain (%)</td>
+    <td>3.70 (t), 6.50 (c)</td>
+    <td>8.45 (t), 9.83 (c)</td>
+    <td>8.00 (t)</td>
+    <td>5.07 (t)</td>
+    <td>10.38 (t)</td>
+    <td>&times;</td>
+    <td>&times;</td>
+  </tr>
+</table> 
+<p>
+&Delta;E<sub>&Gamma;</sub> = Energy difference between conduction band minima and valence band at the &Gamma;-point. 
+<br>
+* The 't' and 'c' in brackets correspond to tensile and compressive strain, respectively.
+<br>
+× No transitions within ±10% of strain.
+</p>
+<p>
+<b>Note:</b> These transitions depend on the closing of the CBM and VBM gaps. As the VBM always remains at the &Gamma; point, therefore these transition points depend on &Delta;E<sub>&Gamma;</sub>. As the &Delta;E<sub>&Gamma;</sub> increased, so did the S(s)MTs. 
+</p>
+ 
+</body>
+</html>

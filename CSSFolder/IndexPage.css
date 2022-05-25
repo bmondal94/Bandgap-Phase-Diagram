@@ -14,11 +14,15 @@ ul.CompoundFamilyList li {
 
 details > summary {
   padding: 4px;
-  width: 180px;
+  width: max-content;
   background-color: #eeeeee;
   border: none;
   box-shadow: 1px 1px 2px #bbbbbb;
-  cursor: pointer;
+  cursor: pointer;  
+}
+
+details > summary > * {
+  display: inline;
 }
 
 details > p {
@@ -35,6 +39,12 @@ details > p {
   max-width: 1000px;
   position: relative;
   margin: auto;
+}
+
+video {
+  height: auto;
+  width: 100%;
+  max-width: 1000px;
 }
 
 /* Hide the images by default */

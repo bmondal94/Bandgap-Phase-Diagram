@@ -1,5 +1,5 @@
 # Bandgap Phase Diagram
-Bandgap phase diagram for ternary and higher order semiconductor materials.
+Bandgap phase diagram for semiconductor materials.
 * https://bmondal94.github.io/Bandgap-Phase-Diagram/
 
 ## Computational setup

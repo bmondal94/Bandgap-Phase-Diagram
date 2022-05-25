@@ -7,20 +7,31 @@
 
 <!-- Slideshow container -->
 <div class="slideshow-container">
-
   <!-- Full-width images with number and caption text -->
   <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
+    <div class="numbertext">1 / 4</div>
+		<video id="BPDVideo" controls muted>
+  			<source src="./Movies/BPD.mp4" type="video/mp4">
+  			Your browser does not support the video tag.
+		</video>
+		<!-- video autoplay muted loop>
+  			<source src="./Movies/BPD.mp4" type="video/mp4"  style="width:100%">
+  			Your browser does not support the video tag.
+		</video -->
+  </div>
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 4</div>
     <img src="./ImageFolder/BPD1.png" style="width:100%">
   </div>
 
   <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
+    <div class="numbertext">3 / 4</div>
     <img src="./ImageFolder/BPD2.png" style="width:100%">
   </div>
 
   <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
+    <div class="numbertext">4 / 4</div>
     <img src="./ImageFolder/BPD3.png" style="width:100%">
     <!--<div class="text">Caption Three</div>-->
   </div>
@@ -36,7 +47,7 @@
   <span class="dot" onclick="currentSlide(1)"></span>
   <span class="dot" onclick="currentSlide(2)"></span>
   <span class="dot" onclick="currentSlide(3)"></span>
-  <a href="./PDFs/BPD.pdf"> [Download]</a>
+  <span class="dot" onclick="currentSlide(4)"></span>
   <a href="./PDFs/BPDLogoGuideBook.pdf"> [Report]</a>
 </div> 
 
@@ -68,6 +79,10 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 
 <field>
 <h3> Introduction </h3>
@@ -78,7 +93,7 @@ function showSlides(n) {
 </ul>
 <details><summary>BPD jokes</summary>
 	<!-- <h1 style="text-align:center">Bandgap Phase Diagram</h1> -->
-	<p>
+	
 	"""<br>
 	<b>Me:</b> I want to grow this. Can you please grow this for me?<br>
 	<b><abbr title="Compositional Phase Diagram">CPD</abbr>:</b> Yeahhhhhhhhhh! Hmmmmmmmmmm!<br>
@@ -92,18 +107,80 @@ function showSlides(n) {
 	.<br>
 	<b>Me:</b> Wow. Thanks to both of you.<br>
 	"""
-	</p>
+	
 </details>
 </field>
 
+<p>
+<h3> General Notes </h3>
+	<details><summary>Strain definition</summary>
+	<br>
+		The strains are calculated according to the following equation: \[Strain(\%) = {a_f - a_{eqm} \over a_{eqm}}\times 100.\]
+		Where, \(a_f\) is the final stretched/compressed lattice constant, and \(a_{eqm}\) is the equilibrium lattice constant. For biaxial strain, \(a_f\) corresponds to the in-plane (substrate) lattice constant.
+		<ul>
+			<li><b>Isotropic strain:</b> Systematically increased (decreased) the lattice parameters isotropically for expansion (compression); and optimized the position of the atoms only, keeping the volume of the cell fixed.</li>
+			<li><b>Bi-axial strain:</b> Relax the structures only in the out-of-plane lattice direction ([001]) keeping the two in-plane lattice parameters ([100] & [010]) fixed with values that mimic the substrate.</li>
+		</ul>
+	</details>
+	<br>
+	<details><summary><a href='./WorkFlowChart/WorkFlow.html'>Workflow chart</a></summary>
+		<p>This is a general work flow that has been used to automatize the calculations and analyses as much as possible. There are a lot places still left for further improvement. Feel free to adapt to your own work flow strategies in your environment.</p>
+	</details>
+</p>
 
 <p> 
 <h3>Systems</h3> 
-	<details><summary>III-V binary</summary>
-		<ul><li>The project is finished. The report preparation is work in progress. Please contact to below address for further details.</li><ul>
+
+	<details><summary>III-V semiconductors</summary>
+	<details style='padding:10px 0px 0px 20px;'><summary>III-V binary</summary>
+		<details style='padding:10px 0px 0px 20px;'><summary>Upload history</summary>
+			<ul>
+				<li>First upload on 25.05.2022.</li>
+			</ul>
+		</details>
+		<!--<ul><li>The project is finished. The report preparation is work in progress. Please contact to below address for further details.</li></ul>-->
+		<details style='padding:10px 0px 0px 20px;'><summary>Computational details</summary>
+			<ul class='CompoundList'>
+				<li>Software: VASP 5.4.4 </li>
+				<li>Plane wave basis set in conjuction with the projector augmented wave (PAW) method</li>
+				<li>Primitive zinc blende cell</li>
+				<li>Energy cut-off: 450 eV </li>
+				<li>Electronic convergence criteria: 10<sup>-6</sup> eV</li>
+				<li>Force convergence criteria: 10<sup>-2</sup> eV/&#8491;</li> 
+				<li>10&times;10&times;10 &Gamma;-center Monkhorst-Pack kpoint mesh.</li>
+				<li>PBE-D3 functional for structure optimization</li>
+				<li>TB09 functional including spin-orbit coupling for bandgap and band structure calculations</li>
+				<li>\[Strain(\%) = {a_f - a_{eqm} \over a_{eqm}}\times 100.\]
+				\(a_f\) is the final stretched/compressed lattice constant and \(a_{eqm}\) is the equilibrium lattice constant. For biaxial strain \(a_f\) corresponds to the in-plane (substrate) lattice constant.</li>
+				<li><b>Isotropic strain:</b> Systematically increased (decreased) the lattice parameters isotropically for expansion (compression); and optimized the position of the atoms only, keeping the volume of the cell fixed.</li>
+				<li><b>Bi-axial strain:</b> Relax the structures only in the out-of-plane lattice direction ([001]) keeping the two in-plane lattice parameters ([100] & [010]) fixed with values that mimic the substrate.</li>
+			</ul>
+		</details>
+		<details style='padding:10px 0px 0px 20px;'><summary><a href="./Compounds/BinaryPlots.html">Plots</a></summary></details>
+		<details style='padding:10px 0px 0px 20px;'><summary>Plot legends descriptions</summary>
+				<ul class='CompoundList'>
+				<li>\(\Delta E(eV)\): Energy difference between conduction band and valence band.
+					<ul>
+						<li>dE(G): Energy difference between conduction band and valence band at the \(\Gamma\) point.
+							<ul>
+								<li>dE(G) (iso): For isotropic strain.</li>
+								<li>dE(G) (bi): For bi-axial strain.</li>
+							</ul>
+						</li>
+						<li>\(E_g\): Energy difference between conduction band minima and valence band maxima = bandgap.
+							<ul>
+								<li>\(E_g\) (iso): For isotropic strain.</li>
+								<li>\(E_g\) (bi): For bi-axial strain.</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>(In-plane) Strain(%): (Bi-axial) Isotropic Strain. </li>
+			</ul>
+		</details>
+		<details style='padding:10px 0px 0px 20px;'><summary><a href="./Compounds/BinarySummaryTable.html">Results Table</a></summary></details>
 	</details>
-	<br>
-	<details><summary>III-V ternary</summary>
+	<details  style='padding:10px 0px 0px 20px;'><summary>III-V ternary</summary>
 		<details style='padding:10px 0px 0px 20px;'><summary>DFT based</summary>
 			<ul class='CompoundList'>
 				<li><a href="./Compounds/GaAsP.html"> GaAsP</a>, <a href="./CompDetails/CompDetail.html"> Computational details</a> (uploaded on 22.09.2021)</li>
@@ -116,20 +193,16 @@ function showSlides(n) {
 				<li><a href="./ImpNotes.html"> Important notes </a></li>
 			</ul>
 		</details>
-		<details style='padding:10px 0px 0px 20px;'><summary>ML model based</summary>
+		<!-- <details style='padding:10px 0px 0px 20px;'><summary>ML model based</summary>
 		Work in progress.
-		</details>
+		</details> -->
 	</details>
-	<br>
-	<details><summary>III-V quaternary <div class="blink">(comming soon)</div></summary>
-		<details style='padding:10px 0px 0px 20px;'><summary>DFT + ML based</summary>
+	<details style='padding:10px 0px 0px 20px;'><summary>III-V quaternary <div class="blink">(comming soon)</div></summary>
+		<details style='padding:10px 0px 0px 20px;'><summary>DFT + Machine learning based</summary>
 			<ul><li>The project is work in progress. Please contact to the below address for further details.</li></ul>
 
 		</details>
 	</details>
-	<br>
-	<details><summary><a href='./WorkFlowChart/WorkFlow.html'>Work Flow chart</a></summary>
-		This is a general work flow that has been used to automatize the calculations and analyses as much as possible. There are a lot places still left for further improvement. Feel free to adapt to your own work flow strategies in your environment.
 	</details>
 </p>
 
