@@ -1,3 +1,4 @@
 [submodule "Machine-Learning-Bandgap-Phase-Diagram"]
 	path = Machine-Learning-Bandgap-Phase-Diagram
 	url = https://github.com/bmondal94/Machine-Learning-Bandgap-Phase-Diagram.git
+	branch=main
