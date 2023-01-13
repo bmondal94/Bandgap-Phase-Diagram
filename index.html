@@ -86,7 +86,10 @@ function showSlides(n) {
 
 <field>
 <h3> Introduction </h3>
-<p>For the introduction to <b>bandgap phase diagram</b> (BPD) concept please refer to [work in progress]. The main idea behind <abbr title="Bandgap Phase Diagram">BPD</abbr> is to understand the composition-strain-bandgap relation in semiconductors (mapping the variation of the bandgap, both in terms of it's magnitude and nature with composition and strain). Please contact to the below contact addresses for further details. </p>
+<p>
+The tuning of the type and size of bandgaps of III-V semiconductors is a major goal for optoelectronic applications. Varying the relative composition of several III- or V-components in compound semiconductors is one of the major approaches here. Alternatively, straining the system can be used to modify the bandgaps. By combining these two approaches, bandgaps can be tuned over a wide range of values, and direct or indirect semiconductors can be designed. However, an optimal choice of composition and strain to a target bandgap requires complete material-specific composition, strain, and bandgap knowledge. Exploring the vast chemical space of all possible combinations of III- and V-elements with variation in composition and strain is experimentally not feasible. We thus developed a density-functional-theory-based predictive computational approach for such an exhaustive exploration. This enabled us to construct the <b>bandgap phase diagram</b> (BPD) by mapping the bandgap in terms of its magnitude and nature over the whole composition-strain space. Further, we have developed efficient machine-learning models to accelerate such mapping in multinary systems. We show the application and great benefit of this new predictive mapping on device design.
+<!-- For the introduction to <b>bandgap phase diagram</b> (BPD) concept please refer to [work in progress]. The main idea behind <abbr title="Bandgap Phase Diagram">BPD</abbr> is to understand the composition-strain-bandgap relation in semiconductors (mapping the variation of the bandgap, both in terms of it's magnitude and nature with composition and strain). Please contact to the below contact addresses for further details. -->
+</p>
 <ul>
 	<li><a href='./PDFs/short-abstract.pdf'>Download 1-page abstract here</a></li>
 	<li><a href='./PDFs/MyResearchSummary2022.pdf'>Download short abstract here</a></li>
@@ -218,10 +221,36 @@ function showSlides(n) {
 		Work in progress.
 		</details> -->
 	</details>
-	<details style='padding:10px 0px 0px 20px;'><summary>III-V quaternary <div class="blink">(coming soon)</div></summary>
-		<details style='padding:10px 0px 0px 20px;'><summary>DFT + Machine learning based</summary>
-			<ul><li>The project is work in progress. Please contact to the below address for further details.</li></ul>
-
+	<details style='padding:10px 0px 0px 20px;'><summary>III-V quaternary</summary>
+		<details style='padding:10px 0px 0px 20px;'><summary>Machine learning based</summary>
+		Note: As epitaxial growth is the most common approach to grow multinary III-V semiconductors, below we map the bandgap phase diagram for these compounds under biaxial strain only.<br>
+		Warning: The project is work in progress. Complete data is not available yet. Please contact to the below address for further details.
+			<details style='padding:10px 0px 0px 20px;'><summary>Supervised learning with SVM(rbf)</summary>
+				<ul>
+					<li>SVR(rbf) and SVC(rbf) ML models were used for the bandgap magnitude and bandgap nature, respectively.</li>
+					<li><a href="./Machine-Learning-Bandgap-Phase-Diagram/SupervisedLearning/scripts">Scripts</a></li>
+					<li><a href="./Machine-Learning-Bandgap-Phase-Diagram/SupervisedLearning/SystemSpecificScripts">System specific scripts</a></li>
+					<li><a href="./Machine-Learning-Bandgap-Phase-Diagram/SupervisedLearning/DATAbase">Data bases</a> (type: python SQLite)</li>
+					
+				</ul>
+				<details style='padding:1px 0px 0px 20px;'><summary>Compounds <div class="blink">(coming soon)</div></summary>
+					<ul>
+						<li>GaAsPSb (biaxial strain), <a href="./Machine-Learning-Bandgap-Phase-Diagram/SupervisedLearning/RESULTS/ComputationalDetails/CompDetail.html">Computational details</a>, <a href="./Machine-Learning-Bandgap-Phase-Diagram/SupervisedLearning/RESULTS/MODELS">Trained models</a></li>
+					</ul>
+				</details>
+			</details>
+			<details style='padding:10px 0px 0px 20px;'><summary>Active learning with SVM(rbf)</summary>
+				<ul>
+					<li>SVR(rbf) and SVC(rbf) ML models were used for the bandgap magnitude and bandgap nature, respectively.</li>
+					<li><a href="./Machine-Learning-Bandgap-Phase-Diagram/ActiveLearning/scripts">Scripts</a></li>
+					<li><a href="./Machine-Learning-Bandgap-Phase-Diagram/ActiveLearning/DATAbase">Data bases</a> (type: python SQLite)</li>
+				</ul>
+				<details style='padding:1px 0px 0px 20px;'><summary>Compounds <div class="blink">(coming soon)</div></summary>
+					<ul>
+						<li>GaAsPSb (biaxial strain), <a href="./Machine-Learning-Bandgap-Phase-Diagram/ActiveLearning/RESULTS/ComputationalDetails/CompDetail.html">Computational details</a>, <a href="./Machine-Learning-Bandgap-Phase-Diagram/ActiveLearning/RESULTS/MODELS">Trained models</a></li>
+					</ul>
+				</details>
+			</details>
 		</details>
 	</details>
 	</details>
