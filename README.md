@@ -1,7 +1,8 @@
 # Bandgap Phase Diagram
 Bandgap phase diagram for semiconductor materials. For details visit here:
 * https://bmondal94.github.io/Bandgap-Phase-Diagram/
-<img src="./ImageFolder/BandgapPhaseDiagram.png" style="width:40px;height:40px;">
+   <img src="./ImageFolder/BandgapPhaseDiagram.png" style="width:100px;height:100px;">
+
 ## Computational setup
 General computational setup.
 * Periodic DFT using VASP-5.4.4
