@@ -1,4 +1,4 @@
 <h1> Notes </h1>
 <ul> 
-	<li> <p>The DFT calculations are discreate. The bandgap (Eg) heatmap in the figures were calculated by gaussian filtering and bilinear interpolation of the discreate DFT points.</p></li>
+	<li> <p> The DFT calculations are performed at discrete points in composition-strain space. The discrete DFT calculated bandgaps are then interpolated to create the final images. We applied an iterative interpolation scheme (check the paper) over a finer interpolation grid to achieve better accuracy in the interpolated bandgap values. However, that introduced interpolation artifacts in the final images over the regions where the available DFT data density was comparatively low. The nature of bandgaps, however, can solely be deduced from the enclosed regions by the direct-indirect transition lines and thus require no interpolation.</p></li>
 </ul>
