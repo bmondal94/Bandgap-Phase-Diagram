@@ -424,6 +424,7 @@ def DrawHeatmap(ax, fig, filtered_arr, extent,aspect='auto', origin='lower', \
     im = ax.imshow(filtered_arr, aspect=aspect,extent=extent, origin=origin,\
                     cmap=mycmap,interpolation=InterpolMethod,vmin=vmin,vmax=vmax)
     if cbar_horizontal:
+        fig.set_size_inches( (8,8) )
         cbar = fig.colorbar(im,format='%.1f', ax=[ax],location='top',fraction=0.05)
         cbar.ax.set_ylabel('E$_{\mathrm{g}}$(eV)', fontsize = 24,\
                            rotation=0,labelpad=50,va='center_baseline')
@@ -462,11 +463,11 @@ def DrawScatter(ax, fig, filtered_arr, extent, mycmap=plt.cm.RdYlBu_r, cbar_hori
     ax.grid(visible=False)
     if cbar_horizontal:
         cbar = fig.colorbar(im,format='%.1f', ax=[ax],location='top',fraction=0.05)
-        cbar.ax.set_ylabel('E$_{\mathrm{g}}$(eV)', fontsize = 18, weight="bold",\
+        cbar.ax.set_ylabel('E$_{\mathrm{g}}$(eV)', fontsize = 24,\
                            rotation=0,labelpad=50,va='center_baseline')
     else:
         cbar = fig.colorbar(im,format='%.1f') #v = np.linspace(-.1, 2.0, 15), plt.colorbar(ticks=v)
-        cbar.ax.set_ylabel('E$_{\mathrm{g}}$ (eV)', fontsize = 18, weight="bold")
+        cbar.ax.set_ylabel('E$_{\mathrm{g}}$ (eV)', fontsize = 24)
     return im
 
 
@@ -474,16 +475,16 @@ def PlotBPD(NC, substrain, subname, subpos, subeg, mycolor, myline, Conc, DIT, f
              Concfitdata=None, DITfitdata=None, DITfit=True, Concfitdataerr=None, DITfitdataerr=None, DITfitErr=True,\
              ErrLabel='', DrawSub=True, DrawDIT=True,label_rot=0, drawheatmap=True, DrawScatterPlot=False,\
                   ylabel=None, xlabel=None, title=None, figsize=(8,6), fignum=None, cmap=plt.cm.RdYlBu_r,\
-                      DrawExp=False, ExpData=None, DrawFillBtw=False, filldata=None,applyfilter=False,\
+                      DrawExp=False, ExpData=None, DrawFillBtw=False, filldata=None,applyfilter=False,cbar_horizontal=False,\
                           DITText=True,Textpos=((70,0),(10,0)),mytext=['DIRECT','INDIRECT'],vmin=None, vmax=None):
     fig, ax = DefineFigureBPD(ylabel=ylabel, xlabel=xlabel, title=title, \
                               mytext=mytext, pos=Textpos,
                               DITText=DITText, figsize=figsize,fignum=fignum)
     if drawheatmap: 
-        im = DrawHeatmap(ax, fig, filtered_arr, extent,vmin=vmin,vmax=vmax, mycmap=cmap,applyfilter=applyfilter)
+        im = DrawHeatmap(ax, fig, filtered_arr, extent,vmin=vmin,vmax=vmax, mycmap=cmap,applyfilter=applyfilter,cbar_horizontal=cbar_horizontal)
         mycolor = [im.cmap(im.norm(x)) for x in subeg]
     elif DrawScatterPlot:
-        im = DrawScatter(ax, fig, filtered_arr,extent,vmin=vmin,vmax=vmax, mycmap=cmap)
+        im = DrawScatter(ax, fig, filtered_arr,extent,vmin=vmin,vmax=vmax, mycmap=cmap,cbar_horizontal=cbar_horizontal)
         mycolor = [im.cmap(im.norm(x)) for x in subeg]
         
     if DrawSub: 

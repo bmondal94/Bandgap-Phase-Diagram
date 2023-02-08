@@ -659,8 +659,12 @@ def PerformInterpolation(points,values,xi,methodt='griddata',submethodt='linear'
         interp_my = SmoothBivariateSpline(points[:,0], points[:,1], values,s=smoothingt)
         grid_z0 = interp_my.ev(xi[:,0],xi[:,1],dx=0,dy=0)
         print(f'The residual in SmoothBivariateSpline = {interp_my.get_residual():0.3f}')  
-        # tck = bisplrep(points[:,0], points[:,1], values,s=0)
-        # grid_z0 = bisplev(xi[:,0],xi[:,1],tck)
+    elif methodt=='BivariateSpline':
+        # tck, fp, ier, msg = bisplrep(points[:,0], points[:,1], values,s=smoothingt,nxest=len(points[:,0]),nyest=len(points[:,1]),full_output=1)
+        tck, fp, ier, msg = bisplrep(points[:,0], points[:,1], values,s=smoothingt,nxest=50,nyest=50,full_output=1)
+        print(f"fp={fp}\nier={ier}\n{msg}\nnx={len(tck[0])},\nny={len(tck[1])}")
+        # print(tck,len(np.unique(xi[:,0])),len(np.unique(xi[:,1])))
+        grid_z0 = bisplev(np.unique(xi[:,0]),np.unique(xi[:,1]),tck)
     return grid_z0
 
 def UsingIterativeInterpolation(points_grid, points_data, Z, cutoff=0.1, methodt='griddata',IterativeInterpolation=True,
@@ -670,6 +674,10 @@ def UsingIterativeInterpolation(points_grid, points_data, Z, cutoff=0.1, methodt
     points_data_loop = points_data.copy()
     Z_val = Z.copy()
     points_iterative, points_iterative_Z_val = [points_data], [Z]
+    if IterativeInterpolation and (methodt in ['RBFInterpolator', 'SmoothBivariateSpline', 'BivariateSpline']):
+        print(f"For {methodt} our iterative interpolation scheme can not be performed. Switching to single-shot interpolation.")
+        IterativeInterpolation = False
+        
     if IterativeInterpolation:
         loop = 1
         TotalPoints = len(points_grid_)
@@ -703,6 +711,16 @@ def UsingIterativeInterpolation(points_grid, points_data, Z, cutoff=0.1, methodt
     else:
         points_iterative.append(points_grid_)
         grid_z0 = PerformInterpolation(points_data_loop,Z_val,points_grid_,methodt=methodt,submethodt=submethodt,smoothingt=smoothingt) # Do interpolation
+        NANpos = np.argwhere(np.isnan(grid_z0)).flatten()
+        if len(NANpos)>0:
+            print(f"Warning: For {len(NANpos)} points nearest neighbor interpolation is performed.")
+            if FillwithNearestNeighbor:
+                NotNANpos = np.argwhere(np.isfinite(grid_z0)).flatten()
+                grid_z0_nn = PerformInterpolation(points_grid_[NotNANpos],grid_z0[NotNANpos],points_grid_[NANpos],methodt='griddata',submethodt='nearest')
+                # print(grid_z0[NANpos],grid_z0_nn)
+                grid_z0[NANpos] = grid_z0_nn
+            else:
+                grid_z0[NANpos] = fillval       
         points_iterative_Z_val.append(grid_z0)
     return points_iterative[1:], points_iterative_Z_val[1:]
 
@@ -734,9 +752,12 @@ def ImageProcessing(X,Y,Z,gridextent, Xbound=(None,None),Ybound=(None,None),Iter
     AFTER_ITER_P = np.concatenate(points_iterative)
     AFTER_ITER_P_Z = np.concatenate(points_iterative_Z_val)
     #### Reshaping
-    sort_id = AFTER_ITER_P[:,0].argsort()
-    sort_id_ = ((AFTER_ITER_P[sort_id][:,1]).reshape(np.shape(fgridx))).argsort(axis=1)
-    AFTER_ITER_P_Z_reshape = np.take_along_axis(AFTER_ITER_P_Z[sort_id].reshape(np.shape(fgridx)), sort_id_, axis=1)
+    if method == 'BivariateSpline':
+        AFTER_ITER_P_Z_reshape = points_iterative_Z_val[0].copy()
+    else:
+        sort_id = AFTER_ITER_P[:,0].argsort()
+        sort_id_ = ((AFTER_ITER_P[sort_id][:,1]).reshape(np.shape(fgridx))).argsort(axis=1)
+        AFTER_ITER_P_Z_reshape = np.take_along_axis(AFTER_ITER_P_Z[sort_id].reshape(np.shape(fgridx)), sort_id_, axis=1)
     
     return (X_b, Y_b, Z_b), (offset, scale), (fgridx, fgridy), \
         (points_iterative, points_iterative_Z_val), (AFTER_ITER_P, AFTER_ITER_P_Z, AFTER_ITER_P_Z_reshape), np.shape(fgridx)

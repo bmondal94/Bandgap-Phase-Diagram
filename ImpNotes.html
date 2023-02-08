@@ -1,4 +1,72 @@
-<h1> Notes </h1>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+<h1> Interpolation details </h1>
 <ul> 
-	<li> <p> The DFT calculations are performed at discrete points in composition-strain space. The discrete DFT calculated bandgaps are then interpolated to create the final images. We applied an iterative interpolation scheme (check the paper) over a finer interpolation grid to achieve better accuracy in the interpolated bandgap values. However, that introduced interpolation artifacts in the final images over the regions where the available DFT data density was comparatively low. The nature of bandgaps, however, can solely be deduced from the enclosed regions by the direct-indirect transition lines and thus require no interpolation.</p></li>
+	<li> <p> The DFT calculations are performed at discrete points in composition-strain space. The discrete DFT calculated bandgaps are then interpolated to create the final images. We used Clough-Tocher  piecewise cubic, C1 smooth, curvature-minimizing 2D interpolant (<a href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.griddata.html#scipy.interpolate.griddata'>griddata</a>, <a href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CloughTocher2DInterpolator.html#scipy-interpolate-cloughtocher2dinterpolator'>CloughTocher2DInterpolator</a>). The interpolated grid image was then smoothen using bilinear interpolation (note: in the paper we used bicubic. unfortunately, at the moment Bokeh does not support bicubic interpolation in regrid). The interpolation scheme follows: </p>
+	<ol>
+		<li> The input points are first triangulated with <a href="http://www.qhull.org/">Qhull</a> (Delaunay triangulation).--> Figure 2</li>
+		<li> The interpolant then constructs a piecewise cubic interpolating Bezier polynomial on each triangle using the Clough-Tocher scheme (scipy.interpolate.CloughTocher2DInterpolator). The interpolant is guaranteed to be continuously differentiable. The interpolant gradients are determined such that the interpolating surface curvature is approximately minimized.--> Figure 3</li>
+		<li> Nearest-neighbor extrapolation is performed on the remaining points that can not be covered via Qhull. Note that mostly the boundary points beyond the x and y limits of input points can not be triangulated under Qhull. As long as those points are not far away from the available input points, the nearest-neighbor extrapolations to those points are accurate enough.--> Figure 4</li>
+		<li> Finally, bicubic interpolation, as implemented in python matplotlib.pyplot.imshow class is applied to smoothen the grid image.--> Figure 5</li>
+	</ol>
+	</li>
+	Note both the input data and interpolation grid are rescaled to unit square during interpolation to eliminate the effect of incommensurable units and/or large differences between the x and y scales.
+	Note, The nature of bandgaps, can solely be deduced from the enclosed regions by the direct-indirect transition lines and thus require no interpolation.
+	
 </ul>
+	<div class="row">
+  		<div class="column">
+  	    	<figure>
+  				<img src="./ImageFolder/interpolation_1.png" style="width:100%">
+  				<figcaption>Fig.1 - Input data (color dots). The black dots indicate the interpolation grid.</figcaption>
+			</figure>
+  		</div>
+  		<div class="column">
+    		<figure>
+  				<img src="./ImageFolder/interpolation_2.png" style="width:100%">
+  				<figcaption>Fig.2 - Delaunay triangulation, indicated by black triangles.</figcaption>
+			</figure>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="column">
+  	    	<figure>
+  				<img src="./ImageFolder/interpolation_3.png" style="width:100%">
+  				<figcaption>Fig.3 - Nearest-neighbor interpolation points, indicated by the black stars. These points could not be triangulated.</figcaption>
+			</figure>
+  		</div>
+  		<div class="column">
+    		<figure>
+  				<img src="./ImageFolder/interpolation_4.png" style="width:100%">
+  				<figcaption>Fig.4 - Nearest-neighbor interpolation. (e) .</figcaption>
+			</figure>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="column">
+  	    	<figure>
+  				<img src="./ImageFolder/interpolation_5.png" style="width:100%">
+  				<figcaption>Fig.5 - Bicubic interpolation over Fig.4.</figcaption>
+			</figure>
+  		</div>
+  	</div>

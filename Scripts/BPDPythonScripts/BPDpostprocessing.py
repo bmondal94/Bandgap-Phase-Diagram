@@ -133,11 +133,30 @@ substrain = (sublattice[:-1] - EqmLP_tmp)/EqmLP_tmp*100
 Xbound=(0,100);Ybound=(-6,6);gridextent=(0,100,-5,5)
 #%%----------------- Image processing -----------------------------------------
 #%% ---------- iterative interpolation ----------------------------------------
+# (X_b, Y_b, Z_b), (offset, scale), (fgridx, fgridy), \
+#     (points_iterative, points_iterative_Z_val), (AFTER_ITER_P, AFTER_ITER_P_Z, AFTER_ITER_P_Z_reshape),SHAPE = \
+#     ff.ImageProcessing(Xarray, strainarray, Bandgaparray,gridextent,Xbound=Xbound,Ybound=Ybound,gridresolutionX=10,gridresolutionY=10,
+#                         cutoff=None,method='griddata',submethod='cubic',smoothing=0.1,fillval=np.nan,FillwithNearestNeighbor=True,
+#                         IterativeInterpolation=0)
+#%% ---------- Non-iterative interpolation ------------------------------------
+#%%% =========== piecewise cubic 
 (X_b, Y_b, Z_b), (offset, scale), (fgridx, fgridy), \
     (points_iterative, points_iterative_Z_val), (AFTER_ITER_P, AFTER_ITER_P_Z, AFTER_ITER_P_Z_reshape),SHAPE = \
     ff.ImageProcessing(Xarray, strainarray, Bandgaparray,gridextent,Xbound=Xbound,Ybound=Ybound,gridresolutionX=10,gridresolutionY=10,
-                        cutoff=None,method='griddata',submethod='cubic',smoothing=0.1,fillval=np.nan,FillwithNearestNeighbor=True,
-                        IterativeInterpolation=0)
+                       cutoff=None,method='griddata',submethod='cubic',fillval=np.nan,FillwithNearestNeighbor=True,
+                       IterativeInterpolation=False)
+#%%% =========== bivariate B-spline
+# (X_b, Y_b, Z_b), (offset, scale), (fgridx, fgridy), \
+#     (points_iterative, points_iterative_Z_val), (AFTER_ITER_P, AFTER_ITER_P_Z, AFTER_ITER_P_Z_reshape),SHAPE = \
+#     ff.ImageProcessing(Xarray, strainarray, Bandgaparray,gridextent,Xbound=Xbound,Ybound=Ybound,gridresolutionX=10,gridresolutionY=10,
+#                        cutoff=None,method='BivariateSpline',smoothing=0.01,fillval=np.nan,FillwithNearestNeighbor=True,
+#                        IterativeInterpolation=False)
+#%%%
+# ax = plt.figure().add_subplot(projection='3d')
+# ax.plot_trisurf(X_b, Y_b, Z_b, linewidth=0.2, antialiased=True)
+# ax.plot_trisurf(AFTER_ITER_P[:,0], AFTER_ITER_P[:,1], AFTER_ITER_P_Z.ravel(), linewidth=0.2, antialiased=True)
+# # ax.plot_trisurf(AFTER_ITER_P[:,0], AFTER_ITER_P[:,1], AFTER_ITER_P_Z, linewidth=0.2, antialiased=True)
+# plt.show()
 #%%% -------------------------------- Plotting --------------------------------
 fig, ax = mpf.PlotScatterData(Xarray, strainarray, Bandgaparray,titletxt=None,xlabeltxt='Sb (%)',
                               ylabeltxt='Strain (%)',zlabeltxt='E$_{\mathrm{g}}$ (eV)',ZLIM=(0,2.5))
