@@ -20,5 +20,8 @@ General computational setup.
 ## References
 * III-V semiconductors bandgap phase diagram
     *  Binary compounds: [arXiv](http://arxiv.org/abs/2208.10596), [NOMAD repository](https://doi.org/10.17172/NOMAD/2022.08.20-2)
+    
+## License
+* [MIT License](LICENSE)
 
 Please contact to [Badal Mondal](mailto:badalmondal.chembgc@gmail.com) for further details.
