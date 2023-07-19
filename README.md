@@ -14,13 +14,13 @@ General computational setup.
 * Periodic DFT using VASP-5.4.4
 * Geometry optimization: PBE-D3 (BJ), PAW basis set 
 * Electronic properties: m-BJ, PAW basis set, spin-orbit coupling 
-* Super cell : 6x6x6, 10 SQS [[1]](https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/manual/node74.html), Γ-only, band unfolding [[2]](https://github.com/rubel75/fold2Bloch-VASP),[[3]](https://github.com/band-unfolding/bandup)
+* Super cell : 6x6x6, SQS [[1]](https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/manual/node74.html), Γ-only, band unfolding [[2]](https://github.com/rubel75/fold2Bloch-VASP),[[3]](https://github.com/band-unfolding/bandup)
 * SVM(rbf) machine learning models
 
 ## References
 * III-V semiconductors bandgap phase diagram
     *  Binary compounds: [arXiv](http://arxiv.org/abs/2208.10596), [Mondal et. al, Phys. Scr. 98, 065924 (2023)](https://doi.org/10.1088/1402-4896/acd08b), [NOMAD repository](https://doi.org/10.17172/NOMAD/2022.08.20-2)
-    *  Ternary compounds: [arXiv](http://arxiv.org/abs/2302.14547), [NOMAD repository](https://doi.org/10.17172/NOMAD/2023.02.27-1)
+    *  Ternary compounds: [arXiv](http://arxiv.org/abs/2302.14547), [Mondal et. al, Phys. Rev. B. 108, 035202 (2023)](https://doi.org/10.1103/PhysRevB.108.035202), [NOMAD repository](https://doi.org/10.17172/NOMAD/2023.02.27-1)
     *  Quaternary compounds
         *  GaAsPSb system: [arXiv](https://doi.org/10.48550/arXiv.2305.03666), [NOMAD repository](https://doi.org/10.17172/NOMAD/2023.05.03-1)
     
