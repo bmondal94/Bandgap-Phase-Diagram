@@ -19,10 +19,10 @@ General computational setup.
 
 ## References
 * III-V semiconductors bandgap phase diagram
-    *  Binary compounds: [arXiv](http://arxiv.org/abs/2208.10596), [Mondal et. al, Phys. Scr. 98, 065924 (2023)](https://doi.org/10.1088/1402-4896/acd08b), [NOMAD repository](https://doi.org/10.17172/NOMAD/2022.08.20-2)
-    *  Ternary compounds: [arXiv](http://arxiv.org/abs/2302.14547), [Mondal et. al, Phys. Rev. B. 108, 035202 (2023)](https://doi.org/10.1103/PhysRevB.108.035202), [NOMAD repository](https://doi.org/10.17172/NOMAD/2023.02.27-1)
+    *  Binary compounds: [arXiv](http://arxiv.org/abs/2208.10596); [Mondal et al., Phys. Scr. 98, 065924 (2023)](https://doi.org/10.1088/1402-4896/acd08b); [NOMAD repository](https://doi.org/10.17172/NOMAD/2022.08.20-2)
+    *  Ternary compounds: [arXiv](http://arxiv.org/abs/2302.14547); [Mondal et al., Phys. Rev. B. 108, 035202 (2023)](https://doi.org/10.1103/PhysRevB.108.035202); [NOMAD repository](https://doi.org/10.17172/NOMAD/2023.02.27-1)
     *  Quaternary compounds
-        *  GaAsPSb system: [arXiv](https://doi.org/10.48550/arXiv.2305.03666), [NOMAD repository](https://doi.org/10.17172/NOMAD/2023.05.03-1)
+        *  GaAsPSb system: [arXiv](https://doi.org/10.48550/arXiv.2305.03666); [Mondal et al., J. Chem. Phys. 159, 104702 (2023)](https://doi.org/10.1063/5.0159604); [NOMAD repository](https://doi.org/10.17172/NOMAD/2023.05.03-1)
     
 ## License
 * [MIT License](LICENSE)
